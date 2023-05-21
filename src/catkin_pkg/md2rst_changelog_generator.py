@@ -40,12 +40,11 @@ http://ros.org/reps/rep-0132.html
 """
 
 import os
-import re
 
 from catkin_pkg.changelog import BAD_CHANGELOG_FILENAME, CHANGELOG_FILENAME
-from catkin_pkg.changelog_generator_vcs import Tag
 
 FORTHCOMING_LABEL = 'Forthcoming'
+
 
 def generate_changelogs(base_path, packages, logger=None):
     for pkg_path, package in packages.items():
@@ -66,13 +65,13 @@ def generate_changelog_file(pkg_name, bad_changelog_path):
     with open(bad_changelog_path, 'rb') as file:
         for line in file:
             line = str(line.decode('UTF-8').rstrip())
-            if line[:2] == "##":
+            if line[:2] == '##':
                 title = line[2:].strip()
                 data = data + ''.join(['^' for i in range(len(title))]) + '\n'
                 data = data + title + '\n'
                 data = data + ''.join(['^' for i in range(len(title))]) + '\n'
             else:
-                ## Replace bullets with links
+                # Replace bullets with links
                 if line == '\n' or len(line) == 0:
                     data = data + line + '\n'
                     continue
@@ -86,7 +85,7 @@ def generate_changelog_file(pkg_name, bad_changelog_path):
                     data = data + line + '\n'
                     continue
                 change = line[:line.find('[#')]
-                link = line[line.find("[#"):]
+                link = line[line.find('[#'):]
                 number = link[1:link.find('](')]
                 url = link[link.find('https'):-2]
                 new_line = change + '(`' + number + ' <' + url + '>`_)'

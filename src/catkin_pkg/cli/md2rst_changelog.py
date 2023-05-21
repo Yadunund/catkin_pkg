@@ -8,7 +8,6 @@ import os
 import sys
 
 from catkin_pkg.changelog import BAD_CHANGELOG_FILENAME, CHANGELOG_FILENAME
-from catkin_pkg.changelog_generator_vcs import get_vcs_client
 from catkin_pkg.md2rst_changelog_generator import generate_changelogs
 from catkin_pkg.packages import find_packages
 
@@ -63,7 +62,6 @@ def main(sysargs=None):
 
     base_path = '.'
     logging.basicConfig(format='%(message)s', level=logging.DEBUG)
-
 
     # find packages
     packages = find_packages(base_path)
