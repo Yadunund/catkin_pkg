@@ -65,6 +65,7 @@ __maintainer__ = 'William Woodall'
 
 log = logging.getLogger('changelog')
 
+BAD_CHANGELOG_FILENAME = 'CHANGELOG.md'
 CHANGELOG_FILENAME = 'CHANGELOG.rst'
 
 example_rst = """\
